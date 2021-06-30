@@ -37,7 +37,7 @@ public class Zad1 {
         return numbers;
     }
 
-    static int[][] readData3(String filename) {
+    static int[][] readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
             int[][] numbers = new int[countLines(filename)][];
             for (int i = 0; i < numbers.length; i++) {
@@ -63,7 +63,7 @@ public class Zad1 {
     public static void main(String[] args) {
 
         String filename3 = "tablica.txt";
-        int[][] numbers = readData3(filename3);
+        int[][] numbers = readData(filename3);
         int result = sum(numbers);
     }
 
