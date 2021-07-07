@@ -34,11 +34,11 @@ public class Zad2 {
         }
     }
 
-    static int columnLargestElementSummary(int[][] numbers) {
+    static void columnLargestElementSummary(int[][] numbers) {
         if (numbers == null || numbers.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
         }
-        
+        int maxSum = 0;
     }
 
     public static void main(String[] args) {
