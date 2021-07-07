@@ -7,10 +7,8 @@ Pobierz liczby z pliku tekstowego do tablicy i wypisz na ekranie sumę elementó
  */
 
 
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad1 {
@@ -40,7 +38,7 @@ public class Zad1 {
 
     public static void main(String[] args) {
 
-        String filename = "tablica.txt";
+        String filename = "src/zad1/tablica.txt";
         int result = sum(readData(filename));
         System.out.println("Result: " + result);
     }
