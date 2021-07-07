@@ -23,7 +23,7 @@ public class Zad1 {
     }
 
     static int sum(String text) {
-        if (text == null) {
+        if (text == null || !text.matches("(\\d+\\D)*\\d+")) {
             throw new IllegalArgumentException("text is not correct");
         }
         String[] array = text.split("\\D");
