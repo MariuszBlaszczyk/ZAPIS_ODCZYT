@@ -11,5 +11,31 @@ Kolejne wiersze w pliku to kolejne wiersze tablicy dwuwymiarowej. Pobierz z plik
 do tablicy dwuwymiarowej i wyznacz kolumnę o największej sumie elementów.
  */
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Zad2 {
+
+    static int[][] readData(String filename) {
+        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
+            int rows = sc.nextInt();
+            int cols = sc.nextInt();
+            int[][] numbers = new int[rows][cols];
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    numbers[i][j] = sc.nextInt();
+                }
+            }
+            return numbers;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+
+        String filename = "src/zad2/tablicaDwa.txt";
+    }
 }
