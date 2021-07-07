@@ -34,6 +34,13 @@ public class Zad2 {
         }
     }
 
+    static int columnLargestElementSummary(int[][] numbers) {
+        if (numbers == null || numbers.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        
+    }
+
     public static void main(String[] args) {
 
         String filename = "src/zad2/tablicaDwa.txt";
