@@ -7,68 +7,46 @@ Pobierz liczby z pliku tekstowego do tablicy i wypisz na ekranie sumę elementó
  */
 
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad1 {
 
-    static int countLines(String filename) {
+    static String readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-            int counter = 0;
-            while (sc.hasNextLine()) {
-                ++counter;
-                sc.nextLine();
-            }
-            return counter;
+            String newText = sc.nextLine();
+            return newText;
         } catch (Exception e) {
-            throw new IllegalStateException(e.getMessage());
+            throw new IllegalArgumentException(e.getMessage());
         }
     }
 
-    static int[] getNumbers(String line) {
-        if (line == null || !line.matches("(\\d+\\D)*\\d+")) {
-            throw new IllegalArgumentException("Line is not correct");
+    static int sum(String text) {
+        if (text == null) {
+            throw new IllegalArgumentException("text is not correct");
         }
-        String[] numbersStr = line.split("\\D");
-        int[] numbers = new int[numbersStr.length];
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = Integer.parseInt(numbersStr[i]);
-        }
-        return numbers;
-    }
-
-    static int[][] readData(String filename) {
-        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-            int[][] numbers = new int[countLines(filename)][];
-            for (int i = 0; i < numbers.length; i++) {
-                numbers[i] = getNumbers(sc.nextLine());
-            }
-            return numbers;
-        } catch (Exception e) {
-            throw new IllegalStateException(e.getMessage());
-        }
-    }
-
-    static int sum(int... numbers) {
-        if (numbers == null) {
-            throw new IllegalArgumentException("Array is null");
-        }
+        String[] array = text.split("\\D");
         int sum = 0;
-        for (int value : numbers) {
-            sum += value;
+        int[] numbers = new int[array.length];
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.parseInt(array[i]);
+            sum += numbers[i];
         }
         return sum;
     }
 
     public static void main(String[] args) {
 
-        String filename3 = "tablica.txt";
-        int[][] numbers = readData(filename3);
-        int result = sum(numbers);
+        String filename = "tablica.txt";
+        int result = sum(readData(filename));
+        System.out.println("Result: " + result);
     }
 
-
 }
+
 
 
 
