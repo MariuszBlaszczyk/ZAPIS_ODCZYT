@@ -38,7 +38,9 @@ public class Zad2 {
         if (numbers == null || numbers.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
         }
-        int maxSum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        int sum = 0;
+
     }
 
     public static void main(String[] args) {
