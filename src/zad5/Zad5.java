@@ -13,6 +13,7 @@ co najmniej dwa napisy składające się z samych dużych liter.
 
 
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad5 {
@@ -31,20 +32,47 @@ public class Zad5 {
     }
 
     static String[] getWords(String line) {
-        if (line == null || !line.matches("([A-Za-z]+[^A-Za-z])*[A-Za-z]+")) {
+        if (line == null) {
             throw new IllegalArgumentException("Line is not correct");
         }
-        return line.split("[^A-Za-z]");
+        return line.replace(";", "").split("\\s");
     }
 
     static String[][] readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
             String array[][] = new String[countLines(filename)][];
             for (int i = 0; i < array.length; i++) {
-                array[i] = getWords(sc.nextLine();
+                array[i] = getWords(sc.nextLine());
             }
+            return array;
         } catch (Exception e) {
-            throw new IllegalStateException(e.getMessage())
+            throw new IllegalStateException(e.getMessage());
         }
+    }
+
+    static int atLeastTwoInscriptionsConsistingOfCapitalLettersOnlyCount(String[][] array) {
+        int counter = 0;
+        int counterRows = 0;
+        String regex = "([^A-Z]+[A-Z$]+)";
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j].matches(regex)) {
+                    counter++;
+                    if (counter >= 2) {
+                        counterRows++;
+                    }
+                }
+            }
+        }
+        return counterRows;
+    }
+
+    public static void main(String[] args) {
+
+        String filename = "src/zad5/napisy.txt";
+        String[][] array = readData(filename);
+        System.out.println(Arrays.deepToString(array));
+        int result = atLeastTwoInscriptionsConsistingOfCapitalLettersOnlyCount(array);
+        System.out.println(result);
     }
 }
