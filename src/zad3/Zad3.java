@@ -11,6 +11,7 @@ w którym występuje najwięcej elementów parzystych.
  */
 
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad3 {
@@ -57,8 +58,32 @@ public class Zad3 {
         return number % 2 == 0;
     }
 
+    static int numberOfRow(int[][] array) {
+        int row = 0;
+        int maxCounter = 0;
+        for (int i = 0; i < array.length; i++) {
+            int counter = 0;
+            for (int j = 0; j < array[i].length; j++) {
+                if (isEven(array[i][j])) {
+                    counter++;
+                }
+            }
+            if (counter > maxCounter) {
+                maxCounter = counter;
+                row = i;
+            }
+        }
+        return row;
+    }
+
     public static void main(String[] args) {
 
         String filename = "src/zad3/dane.txt";
+        int[][] array = readData(filename);
+        System.out.println(Arrays.deepToString(array));
+
+        int result = numberOfRow(array);
+        System.out.println(result);
+
     }
 }

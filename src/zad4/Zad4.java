@@ -34,48 +34,18 @@ public class Zad4 {
         }
     }
 
-    static void readData(String filename) {
-        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-            int palindromeCount = 0;
-            int anagramCount = 0;
-            int wordsWithEvenVowelCount = 0;
-            String userWord = getWordFromUser();
-            String[] array = new String[countLines(filename)];
+    static String[][] readData(String filename) {
+        try (FileReader reader = new FileReader(filename); Scanner scan = new Scanner(reader)) {
+            String[][] array = new String[countLines(filename)][];
             for (int i = 0; i < array.length; i++) {
-                array[i] = sc.nextLine();
-                if (isPalindrome(array[i])) {
-                    palindromeCount++;
-                }
-                if (isAnagram(array[i]),userWord){
-                    anagramCount++;
-                }
-                if (evenNumberOfVowels(array[i])) {
-                    wordsWithEvenVowelCount++;
-                }
+                array[i] = scan.nextLine().split("\\s");
             }
-            System.out.println("Number of words that are palindromes: " + palindromeCount);
-            System.out.println("Number of words that are anagrams: " + anagramCount);
-            System.out.println("Number of words with even vowel : " + wordsWithEvenVowelCount);
+            return array;
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
         }
     }
 
-    static String getWordFromUser() {
-        Scanner scan = new Scanner(System.in);
-        String word = null;
-        boolean error = true;
-        do {
-            try {
-                System.out.println("Please pass the word.");
-                word = scan.nextLine();
-                error = false;
-            } catch (Exception e) {
-                throw new IllegalArgumentException(e.getMessage());
-            }
-        } while ((error));
-        return word;
-    }
 
     static boolean isPalindrome(String text) {
         if (text == null || text.isEmpty()) {
@@ -87,6 +57,31 @@ public class Zad4 {
         return (reverse.toString()).equals(clean);
     }
 
+    static int palindromCount(String[][] array) {
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (isPalindrome(array[i][j])) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
+    static String getWordFromUser() {
+        Scanner scan = new Scanner(System.in);
+        String userWord = null;
+        try {
+            System.out.println("Give the word:");
+            userWord = scan.nextLine();
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
+        return userWord;
+    }
+
+
     static boolean isAnagram(String string1, String string2) {
         if (string1 == null || string1.isEmpty()) {
             throw new IllegalArgumentException("String1 is null or empty");
@@ -94,11 +89,32 @@ public class Zad4 {
         if (string2 == null || string2.isEmpty()) {
             throw new IllegalArgumentException("String2 is null or empty");
         }
-        char[] a1 = string1.toCharArray();
-        char[] a2 = string2.toCharArray();
-        Arrays.sort(a1);
-        Arrays.sort(a2);
-        return Arrays.equals(a1, a2);
+        char[] chars1 = string1.toCharArray();
+        for (int i = 0; i < chars1.length; i++) {
+            if (Character.isUpperCase(chars1[i])) {
+                chars1[i] = Character.toLowerCase(chars1[i]);
+            }
+        }
+        char[] chars2 = string2.toCharArray();
+        for (int i = 0; i < chars2.length; i++) {
+            if (Character.isUpperCase(chars2[i])) {
+                chars2[i] = Character.toLowerCase(chars2[i]);
+            }
+        }
+        Arrays.sort(chars1);
+        Arrays.sort(chars2);
+        return Arrays.equals(chars1, chars2);
+    }
+
+    static int anagramCount(String[][] array, String userText) {
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (isAnagram(array[i][j], userText))
+                    counter++;
+            }
+        }
+        return counter;
     }
 
     static boolean evenNumberOfVowels(String text) {
@@ -119,9 +135,28 @@ public class Zad4 {
         return false;
     }
 
+    static int wordsWithAnEvenNumberOfVowelsCount(String[][] array) {
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (evenNumberOfVowels(array[i][j])) {
+                    counter++;
+                }
+            }
+        }
+        return counter;
+    }
+
     public static void main(String[] args) {
 
         String filename = "src/zad4/napisy.txt";
-        System.out.println(readData(filename));
+        String[][] arrays = readData(filename);
+        System.out.println(Arrays.deepToString(arrays));
+        String userWord = getWordFromUser();
+        System.out.println("Palindrom counter: " + palindromCount(arrays));
+        System.out.println("Anagram counter: " + anagramCount(arrays, userWord));
+        System.out.println("words with an even number of vowels: " + wordsWithAnEvenNumberOfVowelsCount(arrays));
+
+
     }
 }

@@ -13,6 +13,7 @@ do tablicy dwuwymiarowej i wyznacz kolumnę o największej sumie elementów.
 
 
 import java.io.FileReader;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad2 {
@@ -34,17 +35,57 @@ public class Zad2 {
         }
     }
 
-    static void columnLargestElementSummary(int[][] numbers) {
+    static int columnLargestElementSummaryReturnIndex(int[][] numbers) {
         if (numbers == null || numbers.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
         }
         int maxSum = Integer.MIN_VALUE;
-        int sum = 0;
+        int index = 0;
+        for (int j = 0; j < numbers[0].length; j++) {
+            int sum = 0;
+            for (int i = 0; i < numbers.length; i++) {
+                sum += numbers[i][j];
+            }
+            if (sum > maxSum) {
+                maxSum = sum;
+                index = j;
+            }
+        }
+        return index;
+    }
 
+    static int[] columnLargestElementSummaryReturnColumn(int[][] numbers) {
+        if (numbers == null || numbers.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        int maxSum = Integer.MIN_VALUE;
+        int[] tempArr = new int[numbers.length];
+        int[] arr = new int[numbers.length];
+        for (int j = 0; j < numbers[0].length; j++) {
+            int sum = 0;
+            for (int i = 0; i < numbers.length; i++) {
+                sum += numbers[i][j];
+                tempArr[i] = numbers[i][j];
+            }
+            if (sum > maxSum) {
+                maxSum = sum;
+                arr = Arrays.copyOf(tempArr,tempArr.length);
+            }
+        }
+        return arr;
     }
 
     public static void main(String[] args) {
 
         String filename = "src/zad2/tablicaDwa.txt";
+        int[][] array = readData(filename);
+        System.out.println(Arrays.deepToString(array));
+        int idx = columnLargestElementSummaryReturnIndex(array);
+        System.out.println("Index: = " + idx);
+
+        int[] col = columnLargestElementSummaryReturnColumn(array);
+        System.out.println(Arrays.toString(col));
+
+
     }
 }
