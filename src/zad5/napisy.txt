@@ -1,3 +1,5 @@
 Sobota; POLSKA; ADAM
 miasto; karuzela; Katowice
 EWA; NIEMCY; autobus
+ANNA; WANNA; kino
+BombA; CiotkA; WujeK

@@ -1,0 +1,4 @@
+Jan, Kowalski, 10000
+Dariusz, Nowak, 7500
+Michał, Anioł, 23900
+Marek, Go, 2300

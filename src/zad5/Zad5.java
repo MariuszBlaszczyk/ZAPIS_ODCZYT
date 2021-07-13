@@ -35,7 +35,7 @@ public class Zad5 {
         if (line == null) {
             throw new IllegalArgumentException("Line is not correct");
         }
-        return line.replace(";", "").split("\\s");
+        return line.split(";");
     }
 
     static String[][] readData(String filename) {
