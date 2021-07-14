@@ -30,64 +30,61 @@ public class Zad6 {
         }
     }
 
-    static int[] getNumbers(String line) {
-        String[] numbersStr = line.split(",");
-        int[] numbers = new int[numbersStr.length];
-        for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = Integer.parseInt(numbersStr[i]);
-        }
-        return numbers;
-    }
-
-    static int[][] readData3(String filename) {
+    static String[] readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-            int[][] numbers = new int[countLines(filename)][];
-            for (int i = 0; i < numbers.length; i++) {
-                numbers[i] = getNumbers(sc.nextLine());
+            String[] newText = new String[countLines(filename)];
+            for (int i = 0; i < newText.length; i++) {
+                newText[i] = sc.nextLine();
             }
-            return numbers;
+            return newText;
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
         }
     }
 
-//    static String[] getWords(String line) {
-//        if (line == null) {
-//            throw new IllegalArgumentException("Line is not correct");
-//        }
-//        return line.split(",");
-//    }
-//
-//    static String[][] readData(String filename) {
-//        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-//            String[][] array = new String[countLines(filename)][];
-//            for (int i = 0; i < array.length; i++) {
-//                array[i] = getWords(sc.nextLine());
-//            }
-//            return array;
-//        } catch (Exception e) {
-//            throw new IllegalStateException(e.getMessage());
-//        }
-//    }
-//
-//    static double average(String[][] array) {
-//        int sum = 0;
-//        int[] numbers = null;
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 0; j < array[i].length; j++) {
-//                numbers[i] = Integer.parseInt(String.valueOf(array[i]));
-//                sum += numbers[i];
-//            }
-//        }
-//        return sum / numbers.length * 1.0;
-//    }
+    static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
+
+    static int countNumbersInArray(String[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        int counterNumbers = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (isNumeric(array[i])) {
+                counterNumbers++;
+            }
+        }
+        return counterNumbers;
+    }
+
+    static double calculateAverage(String[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        int sum = 0;
+        char[] chars = new char[countNumbersInArray(array)];
+        chars = new char[countNumbersInArray(array)];
+        double zero = 0;
+        return zero;
+    }
 
     public static void main(String[] args) {
 
         String filename = "src/zad6/osoby.txt";
-        int[][] arr = readData3(filename);
-        System.out.println(Arrays.deepToString(arr));
-//        double avg = average(arr);
-//        System.out.println(avg);
+        String[] ne = readData(filename);
+        System.out.println(Arrays.toString(ne));
+        int ccc = countNumbersInArray(ne);
+        System.out.println(ccc);
+
     }
 }
