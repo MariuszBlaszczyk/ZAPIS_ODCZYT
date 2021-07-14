@@ -34,7 +34,7 @@ public class Zad6 {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
             String[] newText = new String[countLines(filename)];
             for (int i = 0; i < newText.length; i++) {
-                newText[i] = sc.nextLine();
+                newText[i] = sc.nextLine().trim();
             }
             return newText;
         } catch (Exception e) {
@@ -67,13 +67,14 @@ public class Zad6 {
         return counterNumbers;
     }
 
-    static double calculateAverage(String[] array) {
-        if (array == null || array.length == 0) {
-            throw new IllegalArgumentException("Array is null or empty");
-        }
-        int sum = 0;
-      
-    }
+
+//    static double calculateAverage(String[] array) {
+//        if (array == null || array.length == 0) {
+//            throw new IllegalArgumentException("Array is null or empty");
+//        }
+//        int sum = 0;
+//
+//    }
 
     public static void main(String[] args) {
 
