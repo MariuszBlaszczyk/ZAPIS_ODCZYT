@@ -72,10 +72,7 @@ public class Zad6 {
             throw new IllegalArgumentException("Array is null or empty");
         }
         int sum = 0;
-        char[] chars = new char[countNumbersInArray(array)];
-        chars = new char[countNumbersInArray(array)];
-        double zero = 0;
-        return zero;
+      
     }
 
     public static void main(String[] args) {
