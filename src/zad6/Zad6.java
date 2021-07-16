@@ -30,6 +30,7 @@ public class Zad6 {
         }
     }
 
+
     static String[] readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
             String[] newText = new String[countLines(filename)];
@@ -81,8 +82,8 @@ public class Zad6 {
         String filename = "src/zad6/osoby.txt";
         String[] ne = readData(filename);
         System.out.println(Arrays.toString(ne));
-        int ccc = countNumbersInArray(ne);
-        System.out.println(ccc);
+        int cN = countNumbersInArray(ne);
+        System.out.println(cN);
 
     }
 }
