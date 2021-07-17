@@ -35,7 +35,7 @@ public class Zad6 {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
             String[] newText = new String[countLines(filename)];
             for (int i = 0; i < newText.length; i++) {
-                newText[i] = sc.nextLine().trim();
+                newText[i] = sc.nextLine();
             }
             return newText;
         } catch (Exception e) {
@@ -55,35 +55,57 @@ public class Zad6 {
         return true;
     }
 
-    static int countNumbersInArray(String[] array) {
+    static double changeStringToDouble(String string) {
+        double number = Double.parseDouble(string);
+        return number;
+    }
+
+    static double calculateAverage(String[] array) {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
         }
-        int counterNumbers = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (isNumeric(array[i])) {
-                counterNumbers++;
+        double sum = 0;
+        int numbers = 0;
+        for (String line : array) {
+            String[] personData = line.split(",");
+            String salary = personData[2];
+            if (isNumeric(salary)) {
+                sum += changeStringToDouble(salary);
+                numbers++;
             }
         }
-        return counterNumbers;
+        return sum / numbers;
     }
 
-
-//    static double calculateAverage(String[] array) {
-//        if (array == null || array.length == 0) {
-//            throw new IllegalArgumentException("Array is null or empty");
-//        }
-//        int sum = 0;
-//
-//    }
+    static String employeeWithTheHighestSalary(String[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        String name = null;
+        String surname = null;
+        String salary = null;
+        double maxSalary = Double.MIN_VALUE;
+        for (String line : array) {
+            String[] personData = line.split(",");
+            salary = personData[2];
+            if (changeStringToDouble(salary) > maxSalary) {
+                maxSalary = changeStringToDouble(salary);
+                name = personData[0];
+                surname = personData[1];
+            }
+        }
+        return name + surname;
+    }
 
     public static void main(String[] args) {
 
         String filename = "src/zad6/osoby.txt";
         String[] ne = readData(filename);
         System.out.println(Arrays.toString(ne));
-        int cN = countNumbersInArray(ne);
-        System.out.println(cN);
+        double average = calculateAverage(ne);
+        System.out.println("Salary average: " + average);
+        String empWithMaxSal = employeeWithTheHighestSalary(ne);
+        System.out.println("The employee with the highest salary: " + empWithMaxSal);
 
     }
 }
