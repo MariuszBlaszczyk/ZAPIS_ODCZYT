@@ -83,7 +83,7 @@ public class Zad6 {
         }
         String name = null;
         String surname = null;
-        String salary = null;
+        String salary;
         double maxSalary = Double.MIN_VALUE;
         for (String line : array) {
             String[] personData = line.split(",");
