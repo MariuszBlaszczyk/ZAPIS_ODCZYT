@@ -106,19 +106,7 @@ public class Zad7 {
         return dayNumber;
     }
 
-
-    static double calculateAverage(double[] array) {
-        if (array == null || array.length == 0) {
-            throw new IllegalArgumentException("Array is null or empty");
-        }
-        double sum = 0;
-        for (double line : array) {
-            sum += line;
-        }
-        return sum / array.length;
-    }
-
-
+    
     static int numberOfTheDayOnWhichTheAverageOfMorningNoonAndEveningTemperaturesWasTheHighest(double[][] array) {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
