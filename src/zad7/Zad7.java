@@ -48,7 +48,7 @@ public class Zad7 {
     }
 
     static double[] getNumbers(String line) {
-        if (line == null) {
+        if (line == null || !line.matches("(\\d+\\D)*\\d+")) {
             throw new IllegalArgumentException("Line is not correct");
         }
         String[] numbersStr = line.split(";");
@@ -106,7 +106,7 @@ public class Zad7 {
         return dayNumber;
     }
 
-    
+
     static int numberOfTheDayOnWhichTheAverageOfMorningNoonAndEveningTemperaturesWasTheHighest(double[][] array) {
         if (array == null || array.length == 0) {
             throw new IllegalArgumentException("Array is null or empty");
