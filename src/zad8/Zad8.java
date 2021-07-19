@@ -62,7 +62,6 @@ public class Zad8 {
 
     static void saveToFile(String filename, int[][] array) {
         try (FileWriter writer = new FileWriter(filename); PrintWriter printWriter = new PrintWriter(writer)) {
-            String[][] newArray = new String[array.length][];
             int tempSum;
             int tempProduct;
             for (int i = 0; i < array.length; i++) {
@@ -75,7 +74,10 @@ public class Zad8 {
                 tempSum = sum;
                 tempProduct = product;
                 printWriter.print(tempSum + " ");
-                printWriter.println(tempProduct);
+                printWriter.print(tempProduct);
+                if (i < array.length) {
+                    System.out.println();
+                }
             }
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage());
