@@ -74,7 +74,7 @@ public class Zad8 {
                 }
                 tempSum = sum;
                 tempProduct = product;
-                printWriter.println(tempSum);
+                printWriter.print(tempSum + " ");
                 printWriter.println(tempProduct);
             }
         } catch (Exception e) {
