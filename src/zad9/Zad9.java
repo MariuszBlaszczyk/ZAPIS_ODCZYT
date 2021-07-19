@@ -57,17 +57,16 @@ public class Zad9 {
             throw new IllegalArgumentException("Array is null or empty");
         }
         StringBuilder builder = new StringBuilder();
-        int[] numbers = new int[array.length / 2];
-        String[] strArray = new String[numbers.length];
+        int[] numbers = new int[array.length];
+        String[] strArray = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             for (int j = 1; j < array[i].length; j++) {
                 numbers[i] = Integer.parseInt(array[i][1]);
                 char chars[] = array[i][0].toCharArray();
-                strArray[i] = 
+                strArray[i] = String.valueOf(chars[numbers[i]]);
+                builder.append(strArray[i]);
             }
         }
-
-
         String newWord = builder.toString();
         return newWord;
     }
