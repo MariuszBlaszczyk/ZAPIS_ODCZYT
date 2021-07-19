@@ -18,7 +18,6 @@ Dla dwóch wierszy pliku ‘liczby.txt’ zaproponowanego na początku zadania p
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad8 {
@@ -75,7 +74,7 @@ public class Zad8 {
                 tempProduct = product;
                 printWriter.print(tempSum + " ");
                 printWriter.print(tempProduct);
-                if (i < array.length) {
+                if (i < array.length - 1) {
                     System.out.println();
                 }
             }
