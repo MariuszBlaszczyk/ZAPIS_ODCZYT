@@ -14,24 +14,10 @@ c) w którym średnia temperatur rano, w południe i wieczorem była największa
  */
 
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Zad7 {
-
-//    static void saveToFile(String filename, String[][] array) {
-//        try (FileWriter writer = new FileWriter(filename); PrintWriter printWriter = new PrintWriter(writer)) {
-//            for (int i = 0; i < array.length; i++) {
-//                for (int j = 0; j < array[i].length; j++) {
-//                    printWriter.println(array[i][j]);
-//                }
-//            }
-//        } catch (Exception e) {
-//            throw new IllegalStateException(e.getMessage());
-//        }
-//    }
 
 
     static int countLines(String filename) {
@@ -132,15 +118,6 @@ public class Zad7 {
 
     public static void main(String[] args) {
 
-//        saveToFile("src/zad7/temperatury.txt", new String[][]{
-//                {"23.4;", "24.3;", "24.2"},
-//                {"25.4;", "25.3;", "27.2"},
-//                {"28.4;", "23.3;", "21.2"},
-//                {"22.3;", "25.7;", "24.8"},
-//                {"23.3;", "24.9;", "23.9"},
-//                {"22.4;", "25.6;", "24.8"},
-//                {"22.2;", "23.3;", "21.1"}
-//        });
 
         String filename = "src/zad7/temperatury.txt";
         double arr[][] = readData(filename);
@@ -148,7 +125,7 @@ public class Zad7 {
 
         int morningSmallest = smallestTemperatureMorning(arr);
         System.out.println("The number of the day on which the morning temperature had the lowest value: " +
-                smallestTemperatureMorning(arr));
+                morningSmallest);
 
         int southHighest = highestTemperatureSouth(arr);
         System.out.println("The number of the day on which the midday temperature had the highest value: " +

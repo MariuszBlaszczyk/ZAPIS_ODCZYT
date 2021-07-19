@@ -14,5 +14,67 @@ EFG-1
 Napis wynikowy to CF. Znaki numerujemy od 0.
  */
 
+import java.io.FileReader;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Zad9 {
+
+    static int countLines(String filename) {
+        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
+            int counter = 0;
+            while (sc.hasNextLine()) {
+                counter++;
+                sc.nextLine();
+            }
+            return counter;
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
+    static String[] getWords(String line) {
+        if (line == null) /*|| !line.matches("(czy dodawać matches skoro 14 i 16 linia są puste???)*/ {
+            throw new IllegalArgumentException("Line is not correct");
+        }
+        return line.split("-");
+    }
+
+    static String[][] readData(String filename) {
+        try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
+            String[][] lines = new String[countLines(filename)][];
+            for (int i = 0; i < lines.length; i++) {
+                lines[i] = getWords(sc.nextLine());
+            }
+            return lines;
+        } catch (Exception e) {
+            throw new IllegalStateException(e.getMessage());
+        }
+    }
+
+    static String captionResults(String[][] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array is null or empty");
+        }
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                char chars[] = array[i][0].toCharArray();
+            }
+        }
+
+
+        String newWord = builder.toString();
+        return newWord;
+    }
+
+    public static void main(String[] args) {
+
+        String filename = "src/zad9/litera.txt";
+        String[][] array = readData(filename);
+        System.out.println(Arrays.deepToString(array));
+
+        String result = captionResults(array);
+        System.out.println("Caption result :" + result);
+    }
 }
