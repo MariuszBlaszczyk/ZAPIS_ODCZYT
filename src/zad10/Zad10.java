@@ -28,12 +28,10 @@ public class Zad10 {
 
     static void saveToFile(String filename) {
         try (FileWriter writer = new FileWriter(filename); PrintWriter printWriter = new PrintWriter(writer)) {
-            String[] line = new String[ARRAY_SIZE];
-            for (int i = 0; i < line.length; i++) {
-                line[i] = String.valueOf(generateNumbers(MIN, MAX));
-                printWriter.print(line[i] + ";");
-                if (i < line.length - 1) {
-                    System.out.println();
+            for (int i = 0; i < ARRAY_SIZE; i++) {
+                printWriter.print(generateNumbers(MIN, MAX) + ";");
+                if (i < ARRAY_SIZE - 1) {
+                    printWriter.println();
                 }
             }
         } catch (Exception e) {
@@ -43,29 +41,27 @@ public class Zad10 {
 
     static String readData(String filename) {
         try (FileReader reader = new FileReader(filename); Scanner sc = new Scanner(reader)) {
-            String newText = sc.nextLine();
-            return newText;
+            return sc.nextLine();
         } catch (Exception e) {
             throw new IllegalArgumentException(e.getMessage());
         }
     }
 
     static double average(int... numbers) {
-        int sum = 0;
+        double sum = 0;
         for (int value : numbers) {
             sum += value;
         }
-        return sum * 1.0 / numbers.length;
+        return sum / numbers.length;
     }
 
     static double standardDeviation(int... numbers) {
         double avg = average(numbers);
         double sum = 0;
         for (double value : numbers) {
-            value = Math.pow(value - avg, 2);
-            sum += value;
+            sum += Math.pow(value - avg, 2);
         }
-        return Math.sqrt(sum / numbers.length * 1.0);
+        return Math.sqrt(sum / numbers.length);
     }
 
     static double result(String line) {
@@ -77,9 +73,8 @@ public class Zad10 {
         int[] numbers = new int[array.length];
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = Integer.parseInt(array[i]);
-            standardDeviation = standardDeviation(numbers[i]);
         }
-        return standardDeviation;
+        return standardDeviation(numbers);
     }
 
     public static void main(String[] args) {

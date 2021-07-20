@@ -34,7 +34,7 @@ public class Zad9 {
     }
 
     static String[] getWords(String line) {
-        if (line == null) /*|| !line.matches("(czy dodawać matches skoro 14 i 16 linia są puste???)*/ {
+        if (line == null)  {
             throw new IllegalArgumentException("Line is not correct");
         }
         return line.split("-");

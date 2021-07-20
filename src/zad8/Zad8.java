@@ -75,7 +75,7 @@ public class Zad8 {
                 printWriter.print(tempSum + " ");
                 printWriter.print(tempProduct);
                 if (i < array.length - 1) {
-                    System.out.println();
+                    printWriter.println();
                 }
             }
         } catch (Exception e) {
